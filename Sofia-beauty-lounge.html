@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agrigentoètroppbell | Beauty Lounge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f1eb;
+      --bg-soft: #fbf7f3;
+      --card: rgba(255,255,255,0.68);
+      --text: #35261f;
+      --muted: #6f5b52;
+      --gold: #b88a58;
+      --gold-soft: #dcb58b;
+      --wood: #8f6b52;
+      --rose: #caa9a0;
+      --border: rgba(101, 70, 50, 0.12);
+      --shadow: 0 20px 60px rgba(75, 43, 24, 0.10);
+      --radius-xl: 30px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --maxw: 1220px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(220,181,139,0.18), transparent 28%),
+        radial-gradient(circle at 85% 10%, rgba(202,169,160,0.20), transparent 24%),
+        linear-gradient(180deg, #f9f3ee 0%, #f7f1eb 42%, #f4ede7 100%);
+      line-height: 1.65;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(calc(100% - 32px), var(--maxw));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(249,243,238,0.74);
+      border-bottom: 1px solid rgba(90,60,42,0.08);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 16px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-mark {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-soft), var(--wood));
+      display: grid;
+      place-items: center;
+      color: white;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      box-shadow: var(--shadow);
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.35rem, 2vw, 2rem);
+      line-height: 1;
+      letter-spacing: 0.02em;
+      font-weight: 700;
+    }
+
+    .brand small {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .menu {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .menu a {
+      padding: 10px 14px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      transition: 0.25s ease;
+    }
+
+    .menu a:hover {
+      background: rgba(184,138,88,0.12);
+      color: var(--text);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 600;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), var(--wood));
+      color: #fff;
+      box-shadow: 0 12px 28px rgba(143,107,82,0.25);
+    }
+
+    .btn-secondary {
+      border-color: rgba(143,107,82,0.18);
+      background: rgba(255,255,255,0.54);
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 72px 0 42px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-copy,
+    .hero-visual,
+    .glass-card,
+    .service-card,
+    .ritual-card,
+    .contact-card,
+    .founder-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-copy {
+      border-radius: var(--radius-xl);
+      padding: 52px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-copy::before {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(220,181,139,0.25), transparent 68%);
+      top: -90px;
+      right: -60px;
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(184,138,88,0.10);
+      color: var(--wood);
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .hero h2,
+    .section-title h3,
+    .founder-box h3,
+    .contact-card h3 {
+      margin: 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      line-height: 1.04;
+    }
+
+    .hero h2 {
+      font-size: clamp(2.8rem, 5.8vw, 5.2rem);
+      margin-bottom: 20px;
+    }
+
+    .hero h2 span {
+      color: var(--wood);
+      font-style: italic;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.06rem;
+      max-width: 690px;
+      margin: 0 0 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .hero-notes {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 14px;
+    }
+
+    .hero-note {
+      padding: 18px;
+      border-radius: var(--radius-md);
+      background: rgba(255,255,255,0.55);
+      border: 1px solid rgba(143,107,82,0.09);
+    }
+
+    .hero-note strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 1rem;
+    }
+
+    .hero-note span {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .hero-visual {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      position: relative;
+      min-height: 620px;
+    }
+
+    .hero-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(38,22,16,0.08), rgba(38,22,16,0.34));
+      display: flex;
+      align-items: flex-end;
+      padding: 28px;
+    }
+
+    .hero-overlay-card {
+      width: min(100%, 360px);
+      border-radius: 22px;
+      padding: 24px;
+      background: rgba(255,248,243,0.72);
+      border: 1px solid rgba(255,255,255,0.45);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-overlay-card strong {
+      display: block;
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+    }
+
+    .hero-overlay-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .section {
+      padding: 34px 0;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .section-title h3 {
+      font-size: clamp(2rem, 4vw, 3.25rem);
+    }
+
+    .section-title p {
+      margin: 0;
+      max-width: 680px;
+      color: var(--muted);
+    }
+
+    .founder-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .founder-box {
+      border-radius: var(--radius-xl);
+      padding: 34px;
+    }
+
+    .founder-box h3 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 16px;
+    }
+
+    .founder-box p {
+      margin: 0 0 18px;
+      color: var(--muted);
+    }
+
+    .founder-box ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .founder-box li + li { margin-top: 8px; }
+
+    .founder-image {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      min-height: 460px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .founder-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .services-grid,
+    .rituals-grid,
+    .contact-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .services-grid {
+      grid-template-columns: repeat(4, minmax(0,1fr));
+    }
+
+    .service-card,
+    .ritual-card,
+    .contact-card {
+      border-radius: 24px;
+      padding: 26px;
+    }
+
+    .service-icon,
+    .ritual-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(220,181,139,0.38), rgba(184,138,88,0.16));
+      margin-bottom: 16px;
+      font-size: 1.4rem;
+    }
+
+    .service-card h4,
+    .ritual-card h4 {
+      margin: 0 0 10px;
+      font-size: 1.1rem;
+    }
+
+    .service-card p,
+    .ritual-card p,
+    .contact-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .gallery-wrap {
+      padding: 18px 0 8px;
+    }
+
+    .gallery-shell {
+      border-radius: 32px;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(255,255,255,0.68), rgba(248,241,234,0.72));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    .gallery-track {
+      display: flex;
+      gap: 16px;
+      width: max-content;
+      animation: scrollGallery 38s linear infinite;
+    }
+
+    .gallery-shell:hover .gallery-track {
+      animation-play-state: paused;
+    }
+
+    .gallery-item {
+      width: 340px;
+      height: 430px;
+      border-radius: 26px;
+      overflow: hidden;
+      position: relative;
+      flex: 0 0 auto;
+      box-shadow: 0 18px 36px rgba(57, 34, 22, 0.14);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gallery-item::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(26,17,14,0.02), rgba(26,17,14,0.32));
+    }
+
+    @keyframes scrollGallery {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(calc(-50% - 8px)); }
+    }
+
+    .rituals-grid {
+      grid-template-columns: repeat(3, minmax(0,1fr));
+    }
+
+    .contact-grid {
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
+    }
+
+    .contact-card h3 {
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      margin-bottom: 14px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .contact-line {
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.56);
+      border: 1px solid rgba(143,107,82,0.08);
+    }
+
+    .contact-line strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 0.95rem;
+    }
+
+    .contact-line span {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    footer {
+      padding: 26px 0 56px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 1120px) {
+      .hero-grid,
+      .founder-grid,
+      .contact-grid,
+      .services-grid,
+      .rituals-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-visual { min-height: 520px; }
+    }
+
+    @media (max-width: 820px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .menu { justify-content: flex-start; }
+
+      .hero,
+      .section { padding: 24px 0; }
+
+      .hero-grid,
+      .founder-grid,
+      .contact-grid,
+      .services-grid,
+      .rituals-grid,
+      .hero-notes {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy { padding: 30px 22px; }
+      .hero-visual { min-height: 420px; }
+      .founder-box,
+      .service-card,
+      .ritual-card,
+      .contact-card { padding: 22px; }
+      .gallery-item { width: 280px; height: 360px; }
+      .section-title { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <div class="brand">
+        <div class="brand-mark">A</div>
+        <div>
+          <h1>Agrigentoètroppbell</h1>
+          <small>Beauty lounge · Sofia</small>
+        </div>
+      </div>
+      <nav class="menu">
+        <a href="#salone">Il salone</a>
+        <a href="#sofia">Sofia</a>
+        <a href="#servizi">Servizi</a>
+        <a href="#atmosfera">Atmosfera</a>
+        <a href="#contatti">Contatti</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="salone">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Estetica avanzata · Rituali di bellezza · Relax sensoriale</span>
+          <h2>La bellezza incontra <span>l’armonia</span>, e ogni gesto diventa cura.</h2>
+          <p>
+            <strong>Agrigentoètroppbell</strong> nasce come un rifugio di eleganza morbida e di attenzione autentica:
+            un salone dal respiro raffinato, dove il calore del legno, la delicatezza delle note floreali e il fascino delle essenze speziate
+            accompagnano la cliente in una dimensione raccolta, luminosa e profondamente rilassante. Qui il tempo rallenta, il corpo si distende,
+            il viso ritrova freschezza e le mani vengono valorizzate con precisione, gusto e professionalità.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#servizi">Scopri i trattamenti</a>
+            <a class="btn btn-secondary" href="#contatti">Prenota un momento per te</a>
+          </div>
+          <div class="hero-notes">
+            <div class="hero-note">
+              <strong>Atmosfera luxury</strong>
+              <span>Spazi soffusi, finiture calde e una sensazione costante di quiete e benessere.</span>
+            </div>
+            <div class="hero-note">
+              <strong>Cura su misura</strong>
+              <span>Ogni trattamento è pensato per mettere la cliente davvero al centro dell’esperienza.</span>
+            </div>
+            <div class="hero-note">
+              <strong>Dettagli sensoriali</strong>
+              <span>Bevande aromatiche e tisane drenanti o rilassanti completano il rituale di bellezza.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=1200&q=80" alt="Interno elegante di un salone beauty" />
+          <div class="hero-overlay">
+            <div class="hero-overlay-card">
+              <strong>Una piccola bolla di relax, nel cuore di Agrigento.</strong>
+              <p>Un luogo pensato per far sentire ogni cliente accolta, valorizzata e accompagnata con delicatezza in un percorso di benessere personale.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="sofia">
+      <div class="container founder-grid">
+        <div class="founder-box">
+          <span class="eyebrow">La professionista</span>
+          <h3>Sofia, competenza luminosa e sensibilità estetica.</h3>
+          <p>
+            Sofia è il volto e l’anima di <strong>Agrigentoètroppbell</strong>: una professionista preparata, attenta, misurata nei gesti e sicura nella tecnica.
+            Il suo percorso è arricchito da <strong>due titoli accademici di qualificazione</strong> per l’esercizio dell’attività di estetista,
+            ai quali si affiancano specializzazioni dedicate alla <strong>cura delle mani</strong>, alla <strong>bellezza del viso</strong> e ai rituali di trattamento capaci di unire estetica, ordine e benessere.
+          </p>
+          <p>
+            Il salone si avvale inoltre della collaborazione di <strong>importanti collaboratrici anch’esse debitamente qualificate</strong>, selezionate per competenza, affidabilità e sensibilità nel rapporto con la clientela, così da garantire continuità, qualità del servizio e un livello di cura sempre coerente con l’identità raffinata del centro.
+          </p>
+          <p>
+            La sua idea di bellezza non è fredda né standardizzata: è una bellezza composta, elegante, ascoltata. Ogni dettaglio viene seguito con finezza,
+            con l’obiettivo di offrire un risultato armonioso, naturale e curato, senza mai perdere il valore del comfort e della serenità personale.
+          </p>
+          <ul>
+            <li>Approccio professionale fondato su preparazione tecnica, gusto estetico e attenzione alla persona.</li>
+            <li>Specializzazioni focalizzate su mani, viso e rituali di benessere con forte componente sensoriale.</li>
+            <li>Competenza dedicata alla bellezza delle mani, con servizi che spaziano dalla manicure estetica ai trattamenti rinforzanti e ricostituenti, dalla ricostruzione alla definizione della forma, fino all’applicazione del colore e alla valorizzazione delle unghie con gusto, precisione e attenzione al dettaglio.</li>
+          </ul>
+        </div>
+        <div class="founder-image" style="min-height:460px;overflow:hidden;border-radius:var(--radius-xl);box-shadow:var(--shadow);border:1px solid var(--border);">
+          <img src="https://raw.githubusercontent.com/EnricoMaraventano/Sofia-beauty-lounge/main/IMG_4274.jpeg" alt="Sofia ritratta in bianco e nero" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="servizi">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <span class="eyebrow">Menu trattamenti</span>
+            <h3>Servizi pensati per riequilibrare bellezza, presenza e benessere.</h3>
+          </div>
+          <p>
+            Una proposta essenziale ma raffinata, costruita per accompagnare la cliente in percorsi di cura dove delicatezza, qualità del gesto e atmosfera rilassante si fondono con naturalezza.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon">✦</div>
+            <h4>Nail care & manicure design</h4>
+            <p>
+              Trattamenti dedicati alla bellezza delle unghie in tutte le forme più richieste: manicure estetica, definizione della forma, ricostruzione, copertura, rinforzo, applicazione del colore, nail art elegante e percorsi ricostituenti pensati per restituire ordine, resistenza e raffinatezza alle mani.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">✦</div>
+            <h4>Pulizia del viso</h4>
+            <p>
+              Trattamenti dedicati alla luminosità e alla purezza della pelle, ideali per ritrovare freschezza, uniformità e una sensazione immediata di ordine e leggerezza.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">✦</div>
+            <h4>Pulizia del corpo</h4>
+            <p>
+              Rituali esfolianti e riequilibranti pensati per rinnovare la pelle e favorire un’esperienza di benessere che coinvolga tutto il corpo con dolcezza.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">✦</div>
+            <h4>Percorsi relax</h4>
+            <p>
+              Esperienze complete che uniscono cura estetica, pausa sensoriale e accompagnamento personalizzato in una vera parentesi di armonia personale.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section gallery-wrap" id="atmosfera">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <span class="eyebrow">Atmosfere del salone</span>
+            <h3>Scorci di quiete, legno caldo e sale dedicate al relax.</h3>
+          </div>
+          <p>
+            Una galleria dimostrativa a scorrimento continuo, pensata per evocare il mood del salone: accoglienza soffusa, stanze riservate e suggestioni visive morbide e avvolgenti.
+          </p>
+        </div>
+
+        <div class="gallery-shell">
+          <div class="gallery-track">
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=900&q=80" alt="Sala relax elegante" /></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=900&q=80" alt="Make up elegante e moderno" /></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=900&q=80" alt="Unghie decorate in modo elegante" /></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=900&q=80" alt="Saletta wellness con arredi morbidi" /></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=900&q=80" alt="Trattamento viso in ambiente rilassante" /></div>
+            <div class="gallery-item"><img src="https://raw.githubusercontent.com/EnricoMaraventano/Sofia-beauty-lounge/main/IMG_4275.jpeg" alt="Scatto di Sofia inserito nel carosello" /></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=900&q=80" alt="Nail art moderna e raffinata" /></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=900&q=80" alt="Salone beauty raffinato" /></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=900&q=80" alt="Ambiente spa con dettagli in legno" /></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=900&q=80" alt="Sala relax elegante" /></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=900&q=80" alt="Make up elegante e moderno" /></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=900&q=80" alt="Unghie decorate in modo elegante" /></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=900&q=80" alt="Saletta wellness con arredi morbidi" /></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=900&q=80" alt="Dettaglio make up professionale" /></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=900&q=80" alt="Nail art moderna e raffinata" /></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <span class="eyebrow">Il rituale dell’accoglienza</span>
+            <h3>Più di un trattamento: un gesto di attenzione verso la persona.</h3>
+          </div>
+          <p>
+            In ogni esperienza trovano spazio piccoli dettagli capaci di alzare la qualità del tempo trascorso nel salone e di renderlo intimamente memorabile.
+          </p>
+        </div>
+
+        <div class="rituals-grid">
+          <article class="ritual-card">
+            <div class="ritual-icon">☕</div>
+            <h4>Bevande calde selezionate</h4>
+            <p>
+              Tisane drenanti, infusi rilassanti e bevande aromatiche vengono offerte durante i trattamenti per enfatizzare la sensazione di pausa e di cura completa di sé.
+            </p>
+          </article>
+
+          <article class="ritual-card">
+            <div class="ritual-icon">✿</div>
+            <h4>Fragranze floreali e speziate</h4>
+            <p>
+              L’ambiente è pensato per avvolgere senza invadere: note morbide, eleganti e riconoscibili accompagnano l’esperienza con discrezione e personalità.
+            </p>
+          </article>
+
+          <article class="ritual-card">
+            <div class="ritual-icon">☾</div>
+            <h4>Silenzio, morbidezza, armonia</h4>
+            <p>
+              Texture calde, sedute comode e stanze dedicate al relax contribuiscono a creare una sospensione gentile dal ritmo quotidiano.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contatti">
+      <div class="container contact-grid">
+        <div class="contact-card">
+          <span class="eyebrow">Invito alla prenotazione</span>
+          <h3>Concediti uno spazio in cui sentirti davvero al centro.</h3>
+          <p>
+            <strong>Agrigentoètroppbell</strong> è pensato per chi cerca una bellezza curata, composta, luminosa, ma anche un momento privato di quiete, ascolto e rigenerazione.
+            Ogni appuntamento può diventare una piccola esperienza di equilibrio tra eleganza esteriore e benessere interiore.
+          </p>
+          <div class="contact-list">
+            <div class="contact-line">
+              <strong>Telefono</strong>
+              <span>+39 000 000 0000</span>
+            </div>
+            <div class="contact-line">
+              <strong>Dove siamo</strong>
+              <span>Enna</span>
+            </div>
+            <div class="contact-line">
+              <strong>Instagram</strong>
+              <span>@agrigentoetroppbell</span>
+            </div>
+            <div class="contact-line">
+              <strong>Orari</strong>
+              <span>Lunedì – Sabato · 09:00 / 19:30</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <span class="eyebrow">Mood del luogo</span>
+          <h3>Un salone da immaginare come una carezza elegante.</h3>
+          <p>
+            Qui la bellezza non viene soltanto eseguita: viene accompagnata. Il legno scalda lo sguardo, i profumi accarezzano l’ambiente, la professionalità di Sofia sostiene la fiducia.
+            Tutto è costruito per far sentire ogni cliente riconosciuta, valorizzata e profondamente a proprio agio.
+          </p>
+          <div class="contact-list">
+            <div class="contact-line">
+              <strong>Trattamenti signature</strong>
+              <span>Viso luminosità · mani curate · rituali relax</span>
+            </div>
+            <div class="contact-line">
+              <strong>Stile degli ambienti</strong>
+              <span>Lussuoso, morbido, accogliente, riservato</span>
+            </div>
+            <div class="contact-line">
+              <strong>Esperienza sensoriale</strong>
+              <span>Calore, silenzio, armonia, essenze e infusi</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      Demo dimostrativa creata per presentazione privata · Agrigentoètroppbell · Sofia Beauty Lounge
+    </div>
+  </footer>
+</body>
+</html>
